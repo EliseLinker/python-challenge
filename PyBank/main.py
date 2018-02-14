@@ -52,37 +52,41 @@ with open(csvpath, newline="") as csvfile:
     for row in csvreader:
         #print(row[0])
         budget_data = row
-        date_list = row[0]
-        revenue_list = row[1]
+        budget_date = row[0]
+        budget_revenue = row[1]
 
     #Tally number of months in budget
         #print(date_list)
         #print(revenue_list)
         if date_counter == 0:
-            hold_date = date_list 
+            hold_date = budget_date 
             date_counter += 1
-            prev_revenue = revenue_list 
-        elif hold_date != date_list:
-            hold_date = date_list 
+            prev_revenue = budget_revenue 
+        elif hold_date != budget_date:
+            hold_date = budget_date 
             date_counter += 1 
             #print(prev_revenue)
-            revenue_change = int(revenue_list) - int(prev_revenue)
-            prev_revenue = revenue_list
+            revenue_change.append (budget_revenue) #int(budget_revenue) - int(prev_revenue)
+            #prev_revenue = budget_revenue
 
         #print(date_counter)
         #print(prev_revenue)
         #print(revenue_list)
+            
+        #for i in range(0,len(revenue_change)):
         print(revenue_change)
-        
+            #min(revenue_change)
+        #print(type(revenue_change))
+
         #???    why isnt this working????
-        #total_revenue_change = sum(revenue_change)/len(revenue_change)
+    #total_revenue_change = sum(revenue_change)/len(revenue_change)
 
 
         #hold_revenue_change + revenue_change
         #hold_revenue_change = revenue_change 
 
     #Calculate Total_Revenue for the entire budget period 
-        total_revenue = total_revenue + int(revenue_list)
+    total_revenue = total_revenue + int(budget_revenue)
         #print(str(total_revenue))
 
     #* The average change in revenue between months over the entire period
